@@ -4,13 +4,16 @@ where
 import Arrow.Prelude
 
 
+pokeArr :: Arrow arr => a -> arr a c -> arr b c
+pokeArr input arrow = constArr input >>> arrow
+
 bindArr :: ArrowApply arr => (a -> arr () b) -> arr a b
 bindArr fn = arr (\ a -> (fn a, ())) >>> app
 
 concatArr :: (ArrowApply arr, ArrowPlus arr) => arr a b -> arr [a] b
 concatArr arrow =
   bindArr (\ case
-    head : tail -> (constArr head >>> arrow) <+> (constArr tail >>> concatArr arrow)
+    head : tail -> pokeArr head arrow <+> pokeArr tail (concatArr arrow)
     _ -> zeroArrow
   )
 
