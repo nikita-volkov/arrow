@@ -15,6 +15,10 @@ concattingArr arrow =
 constArr :: Arrow arr => b -> arr a b
 constArr a = arr (const a)
 
+{-
+The implementation is taken from this StackOverflow answer:
+https://stackoverflow.com/a/13669572/485115
+-}
 traversingArr :: ArrowChoice a => a b c -> a [b] [c]
 traversingArr arrow =
   arr (\ case
