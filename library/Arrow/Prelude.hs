@@ -72,9 +72,3 @@ import Text.ParserCombinators.ReadPrec as Exports (ReadPrec, readPrec_to_P, read
 import Text.Printf as Exports (printf, hPrintf)
 import Text.Read as Exports (Read(..), readMaybe, readEither)
 import Unsafe.Coerce as Exports
-
--- profunctors
--------------------------
-import Data.Profunctor.Unsafe as Exports
-import Data.Profunctor.Choice as Exports
-import Data.Profunctor.Strong as Exports
