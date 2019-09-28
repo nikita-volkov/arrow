@@ -30,8 +30,10 @@ traverseArr arrow =
     head : tail -> Right (head, tail)
     _ -> Left ()
   ) >>> (
-    constArr [] |||
-    (arrow *** traverseArr arrow >>> arr (uncurry (:)))
+    constArr [] ||| (
+      arrow ***
+      traverseArr arrow >>> arr (uncurry (:))
+    )
   )
 
 traverseArr_ :: ArrowChoice a => a b () -> a [b] ()
